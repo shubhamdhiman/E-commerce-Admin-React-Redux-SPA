@@ -1,10 +1,10 @@
 
 import '../Assets/Css/App.css';
-import ItemDetails from './ItemDetails';
 import Navigation from "./Navigation"
 // import AllProducts from './AllProducts';
 // import Cart from './Cart';
 // import AddProduct from './AddProduct';
+// import ItemDetails from './ItemDetails';
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
       {/* <AddProduct /> */}
       {/* <Cart /> */}
       {/* <AllProducts /> */}
-      <ItemDetails />
+      {/* <ItemDetails /> */}
     </>
   );
 }
