@@ -46,6 +46,7 @@
     transition:all .2s ease-in-out;
     position:relative;
     font-family: 'Poppins', sans-serif;
+    border-bottom:3px solid transparent;
 }
 .navButton:hover{
     border-bottom:3px solid black;

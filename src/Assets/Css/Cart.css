@@ -1,8 +1,18 @@
 .cartContainer{
     height:90vh;
     display:flex;
-    justify-content: center;
+    flex-direction:column;
+    justify-content: flex-start;
     align-items: center;
+}
+.cartContainer::-webkit-scrollbar{
+    width:10px;
+    background-color: #00FFEE;
+}
+.cartContainer::-webkit-scrollbar-thumb{
+    background-color:#374151;
+    border:1px solid #00FFEE;
+    border-radius:4px;
 }
 .cartItem{
     width:60%;
@@ -13,6 +23,7 @@
     display:flex;
     justify-content: space-around;
     align-items:center;
+    margin-top:5rem;
 }
 .cartLeft{
     width:200px;

@@ -1,49 +1,88 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import "../Assets/Css/Cart.css";
+import { delete_from_cart } from "../redux/actions/reduxActions";
 function Cart() {
+  const cart_data = useSelector((state) => state.dataR.cart);
+  const dispatch = useDispatch();
+
+  const [empty, setEmpty] = useState(true);
+
+  function delete_from_cart_function(index) {
+    const filteredData = cart_data.filter(
+      (item) => cart_data.indexOf(item) !== index
+    );
+    dispatch(delete_from_cart(filteredData));
+    if (filteredData.length === 0) {
+      setEmpty(true);
+    }
+  }
+
+  useEffect(() => {
+    const numberOfItems = cart_data.length;
+    if (numberOfItems !== 0) {
+      setEmpty(false);
+    }
+  }, empty);
   return (
     <div className="cartContainer">
-      <div className="cartItem">
-        <div className="cartLeft">
-          <img src="" alt="img not found" />
+      {empty ? (
+        <div style={{ fontSize: "2rem", color: "#00FFEE", marginTop: "10rem" }}>
+          Oops!!! No items in the cart
         </div>
-        <div className="cartRight">
-          <div className="cartItemContent">
-            <p className="cartItemHeading">Heading</p>
-            <p className="cartItemDesc">
-              leather shoe, full leather shoe loremfa-rotate-270 content
-              contente sdfhoiashfaisufhasiodfhuaiosuf
-              haoiseruhaiosrufhasifuhasio fhasiofhaiofhalieufhalisefuha
-              lsiufhaiskldfuhaisoeufh
-            </p>
-          </div>
-          <div className="itemPriceRatingDeleteBtn">
-            
-            <div className="itemRating">
-              Rating: {" "}
-              <i className="fa-solid fa-star fa-lg" style={{ color: "#00ffef" }}></i>
-              <i className="fa-solid fa-star fa-lg" style={{ color: "#00ffef" }}></i>
-              <i className="fa-solid fa-star fa-lg" style={{ color: "#00ffef"}}></i>
-              <i
-                className="fa-regular fa-star fa-lg"
-                style={{ color: "#00ffee" }}
-              ></i>
-              <i
-                className="fa-regular fa-star fa-lg"
-                style={{ color: "#00ffee" }}
-              ></i>
+      ) : (
+        cart_data.map((item, index) => (
+          <div className="cartItem" key={index}>
+            <div className="cartLeft">
+              <img src={item.image} alt="img not found" />
             </div>
-            <div className="itemPrice">
-                Price: <strong>3000</strong>
+            <div className="cartRight">
+              <div className="cartItemContent">
+                <p className="cartItemHeading">{item.name}</p>
+                <p className="cartItemDesc">{item.description}</p>
+              </div>
+              <div className="itemPriceRatingDeleteBtn">
+                <div className="itemRating">
+                  Rating:{" "}
+                  <i
+                    className="fa-solid fa-star fa-lg"
+                    style={{ color: "#00ffef", marginTop: "13px" }}
+                  ></i>
+                  <i
+                    className="fa-solid fa-star fa-lg"
+                    style={{ color: "#00ffef", marginTop: "13px" }}
+                  ></i>
+                  <i
+                    className="fa-solid fa-star fa-lg"
+                    style={{ color: "#00ffef", marginTop: "13px" }}
+                  ></i>
+                  <i
+                    className="fa-regular fa-star fa-lg"
+                    style={{ color: "#00ffee", marginTop: "13px" }}
+                  ></i>
+                  <i
+                    className="fa-regular fa-star fa-lg"
+                    style={{ color: "#00ffee", marginTop: "13px" }}
+                  ></i>
+                </div>
+                <div className="itemPrice">
+                  Price: <strong>{item.price}</strong>
+                </div>
+                <button
+                  className="cartDeleteBtn"
+                  onClick={() => {
+                    delete_from_cart_function(index);
+                  }}
+                >
+                  <i class="fa-solid fa-trash fa-2x"></i>
+                  <p className="tooltip">Remove Item from Cart</p>
+                </button>
+              </div>
             </div>
-            <button className="cartDeleteBtn">
-              <i class="fa-solid fa-trash fa-2x"></i>
-              <p className="tooltip">Remove Item from Cart</p>
-            </button>
           </div>
-        </div>
-      </div>
+        ))
+      )}
     </div>
   );
 }

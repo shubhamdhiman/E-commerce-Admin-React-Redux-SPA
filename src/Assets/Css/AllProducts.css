@@ -23,7 +23,7 @@
     background-color: lightgray;
     border-radius:5px;
     display:flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items:center;
     margin-bottom:2rem;
     margin-top:3rem;
@@ -44,12 +44,12 @@
     color:#374151;
 }
 .allProductsDesc{
-    font-size:1.3rem;
+    font-size:1.1rem;
     width:100%;
     color:#374151;
     
 }
-.allProductsDeleteBtn , .allProductsEditBtn{
+.allProductsDeleteBtn , .allProductsEditBtn, .addToCart{
     background-color:transparent;
     border:none;
     float:right;
@@ -57,11 +57,28 @@
     cursor:pointer;
     position:relative;
 }
-.allProductsDeleteBtn:hover i, .allProductsEditBtn i{
-    transform: scale(1.1);
+.tooltip{
+    position:absolute;
+    background-color:rgb(255, 255, 255);
+    color:#ff0000;
+    padding:.4rem .8rem;
+    font-size:1.1rem;
+    width:200px;
+    border-radius:.3rem;
+    display:none;
+    top:0;
+    left:50px;
+    margin:0;
+    z-index:23;
 }
-.allProductsDeleteBtn:hover .tooltip, .allProductsEditBtn:hover .tooltip{
+.addToCart:hover .tooltip{
+    display:inline;
+}
+.allProductsDeleteBtn:hover .tooltip{
     display: inline;
+}
+.allProductsEditBtn:hover .tooltip{
+    display:inline;
 }
 .allProductsContent{
     height:200px;
@@ -77,30 +94,18 @@
     
 }
 .allProductsRight{
-    width:70%;
+    width:75%;
     display:flex;
     justify-content: center;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: center;
 }
-.tooltip{
-    position:absolute;
-    background-color:rgb(255, 255, 255);
-    color:#ff0000;
-    padding:.4rem .8rem;
-    font-size:1.1rem;
-    width:200px;
-    border-radius:.3rem;
-    display:none;
-    top:0;
-    left:50px;
-    margin:0;
-}
+
 .itemPriceRatingDeleteBtn{
     display:flex;
     justify-content: space-between;
     align-items: center;
-    width:100%;
+    width:92%;
 }
 .itemPriceRatingDeleteBtn .itemPrice{
     font-size:1.2rem;
@@ -129,9 +134,13 @@
     outline: none;
     border-radius: .5rem;
 }
-
+.inputHeading{
+    width:100%;
+}
 .inputDesc{
     width:100%;
+    font-size:1.1rem;
+    height:100px;
 }
 
 .cancelBtn{
