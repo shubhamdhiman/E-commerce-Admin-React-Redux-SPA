@@ -1,8 +1,9 @@
-import { ADD_PRODUCT_PAGE, ADD_TO_CART, ALL_PRODUCTS_PAGE, CART_PAGE, DELETE_FROM_CART, FETCHED_DATA } from "../actions/reduxActions";
+import { ADD_PRODUCT_PAGE, ADD_TO_CART, ADD_TO_DATABASE, ALL_PRODUCTS_PAGE, CART_PAGE, DELETE_FROM_CART, DELETE_FROM_DATABASE, FETCHED_DATA, ITEM_DETAILS_PAGE, UNSORTED_DATA } from "../actions/reduxActions";
 
 const initialState = {
     data:[],
     cart:[],
+    unsorted_data:[],
 }
 
 export function dataReducer(state = initialState,action){
@@ -11,6 +12,11 @@ export function dataReducer(state = initialState,action){
             return{
                 ...state,
                 data:action.data
+            }
+        case UNSORTED_DATA:
+            return{
+                ...state,
+                unsorted_data:action.newData
             }
         case ADD_TO_CART:
             return{
@@ -24,6 +30,19 @@ export function dataReducer(state = initialState,action){
             return{
                 ...state,
                 cart:action.data
+            }
+        case ADD_TO_DATABASE:
+            return{
+                ...state,
+                data:[
+                    ...state.data,
+                    action.newData
+                ]
+            }
+        case DELETE_FROM_DATABASE:
+            return{
+                ...state,
+                data:action.newData
             }
         default:
             return state;
@@ -47,6 +66,10 @@ export function pageReducer(state=initialPage,action){
         case ADD_PRODUCT_PAGE:
             return{
                 page:["add_product_page"]
+            }
+        case ITEM_DETAILS_PAGE:
+            return{
+                page:["item_details_page"]
             }
         default:
             return state;

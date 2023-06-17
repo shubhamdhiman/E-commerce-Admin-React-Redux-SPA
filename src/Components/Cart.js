@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "../Assets/Css/Cart.css";
 import { delete_from_cart } from "../redux/actions/reduxActions";
+import { delete_item_toastify } from "./toastify_functions";
 function Cart() {
   const cart_data = useSelector((state) => state.dataR.cart);
   const dispatch = useDispatch();
@@ -14,6 +16,7 @@ function Cart() {
       (item) => cart_data.indexOf(item) !== index
     );
     dispatch(delete_from_cart(filteredData));
+      delete_item_toastify()
     if (filteredData.length === 0) {
       setEmpty(true);
     }
@@ -44,26 +47,26 @@ function Cart() {
               </div>
               <div className="itemPriceRatingDeleteBtn">
                 <div className="itemRating">
-                  Rating:{" "}
+                  Rating:&nbsp;
                   <i
                     className="fa-solid fa-star fa-lg"
-                    style={{ color: "#00ffef", marginTop: "13px" }}
+                    style={{ color: "#00ffef" }}
                   ></i>
                   <i
                     className="fa-solid fa-star fa-lg"
-                    style={{ color: "#00ffef", marginTop: "13px" }}
+                    style={{ color: "#00ffef" }}
                   ></i>
                   <i
                     className="fa-solid fa-star fa-lg"
-                    style={{ color: "#00ffef", marginTop: "13px" }}
+                    style={{ color: "#00ffef" }}
                   ></i>
                   <i
                     className="fa-regular fa-star fa-lg"
-                    style={{ color: "#00ffee", marginTop: "13px" }}
+                    style={{ color: "#00ffee" }}
                   ></i>
                   <i
                     className="fa-regular fa-star fa-lg"
-                    style={{ color: "#00ffee", marginTop: "13px" }}
+                    style={{ color: "#00ffee" }}
                   ></i>
                 </div>
                 <div className="itemPrice">
@@ -83,6 +86,7 @@ function Cart() {
           </div>
         ))
       )}
+      <ToastContainer />
     </div>
   );
 }

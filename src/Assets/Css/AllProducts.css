@@ -2,19 +2,47 @@
     height:90vh;
     display:flex;
     justify-content: top;
-    align-items: center;
+    align-items: center;            
     flex-direction:column;
     overflow-y:scroll;
-    /* margin-top:4rem; */
 }
 .allProductsContainer::-webkit-scrollbar{
     width:10px;
-    background-color: #00FFEE;
 }
 .allProductsContainer::-webkit-scrollbar-thumb{
     background-color:#374151;
     border:1px solid #00FFEE;
     border-radius:4px;
+}
+.sortDiv{
+    padding:.5rem 1rem;
+    border-radius:.3rem;
+    display:flex;
+    align-items: center;
+    margin-top:3rem;
+    position:fixed;
+    right:3rem;
+}
+.sortDiv .sortButton{
+    color: #374151;
+    background-color:#00FFEE;
+    margin-right:.5rem;
+    border-radius:.2rem;
+    padding:.5rem 1rem;
+    font-size:1.3rem;
+    border:none;
+    cursor:pointer;
+}
+.sortDiv .removeSortButton{
+    cursor:pointer;
+    background-color: transparent;
+    border:none;
+    
+    /* padding:.5rem 1rem; */
+}
+.sortDiv .removeSortButton i{
+    font-size:2.8rem;
+    color:red;
 }
 .product{
     width:60%;
@@ -23,7 +51,7 @@
     background-color: lightgray;
     border-radius:5px;
     display:flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items:center;
     margin-bottom:2rem;
     margin-top:3rem;
@@ -120,10 +148,11 @@
 .itemPriceRatingDeleteBtn .itemRating{
     font-size:1.2rem;
     background-color: #374151;
-    padding:.4rem 1rem;
+    padding:0 1rem;
     color:white;
     border-radius:.3rem;
     display:flex;
+    align-items:center;
 }
 .inputHeading, .inputDesc{
     padding:.5rem;
@@ -183,6 +212,7 @@
     padding:.2rem .4rem;
     font-size:1.2rem;
     border-radius:.2rem;
+    margin:0;
 }
 .inputRating{
     background-color: #00FFEE;
@@ -193,4 +223,5 @@
     padding:.2rem .4rem;
     font-size:1.2rem;
     border-radius:.2rem;
+    margin:0;
 }

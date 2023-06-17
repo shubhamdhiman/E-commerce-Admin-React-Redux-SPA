@@ -4,10 +4,10 @@
     flex-direction:column;
     justify-content: flex-start;
     align-items: center;
+    overflow-y:scroll;
 }
 .cartContainer::-webkit-scrollbar{
     width:10px;
-    background-color: #00FFEE;
 }
 .cartContainer::-webkit-scrollbar-thumb{
     background-color:#374151;
@@ -44,7 +44,7 @@
     color:#374151;
 }
 .cartItemDesc{
-    font-size:1.3rem;
+    font-size:1.1rem;
     width:100%;
     color:#374151;
     
@@ -66,6 +66,7 @@
 }
 .cartItemContent{
     height:200px;
+    width:98%;
     display:flex;
     justify-content: space-evenly;
     flex-direction: column;

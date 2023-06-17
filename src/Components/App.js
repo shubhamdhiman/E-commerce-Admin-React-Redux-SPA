@@ -13,7 +13,7 @@ function App() {
   // console.log(page[0]);
   // console.log(page[0] === "all_products_page");
   return (
-    <>=
+    <>
       <Navigation />
       {page[0] === "all_products_page" ? (
         <AllProducts />
