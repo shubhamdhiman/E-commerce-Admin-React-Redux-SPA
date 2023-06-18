@@ -4,6 +4,7 @@ import {
   ITEM_DETAILS_PAGE,
   add_to_cart,
   delete_from_database,
+  editable,
   fetchData,
   item_details_data,
   item_details_page,
@@ -18,16 +19,20 @@ import {
   unsorted_toastify,
 } from "./toastify_functions";
 import "../Assets/Css/AllProducts.css";
+
 const AllProducts = () => {
   const dispatch = useDispatch();
   const storeData = useSelector((state) => state.dataR.data);
   const storeDataUnsorted = useSelector((state) => state.dataR.unsorted_data);
-  // const storeDataitemDetail = useSelector((state) => state.dataR.item_detail);
   const [loading, setLoading] = useState(true);
-  const [edit, setEdit] = useState(false);
-  // let arr1 = [];
-  // let arr2 = [];
-
+  const [itemInfo,setItemInfo] = useState({
+    name:"",
+    description:"",
+    rating:"",
+    price:"",
+    image:"",
+  })
+  const isTrue = "true";
   function add_item_to_cart(index) {
     add_item_toastify();
     dispatch(add_to_cart(storeData[index]));
@@ -61,33 +66,52 @@ const AllProducts = () => {
     unsorted_toastify();
   }
   function seeItemDetails(index) {
-    // console.log(index)
     const newData = storeData.filter(
       (item) => storeData.indexOf(item) === index
     );
-    // console.log(newData)
     dispatch(item_details_data(newData));
-    // console.log(storeDataitemDetail)
     dispatch(item_details_page(ITEM_DETAILS_PAGE));
   }
-  // function ratingRender(number) {
-  //   // console.log("number is ", number)
-  //   for (let i = 0; i < number; i++) {
-  //     arr1.push(
-  //       <i className="fa-solid fa-star fa-lg" style={{ color: "#00ffef" }}></i>
-  //     );
-  //   }
-  //   if (5 - number !== 0) {
-  //     for (let i = 0; i < 5 - number; i++) {
-  //       arr2.push(
-  //         <i
-  //           className="fa-regular fa-star fa-lg"
-  //           style={{ color: "#00ffee" }}
-  //         ></i>
-  //       );
-  //     }
-  //   }
-  // }
+  function editItem(index, value) {
+    const selectedItemforEdit = storeData.filter(
+      (item) => storeData.indexOf(item) === index
+    );
+    const mapOverSelectedItem = selectedItemforEdit.map((item) => ({
+      ...item,
+      edit: `${value}`,
+    }));
+    const newData = [...storeData];
+    newData.splice(index, 1, mapOverSelectedItem[0]);
+    console.log("clicked");
+    dispatch(fetchData(newData));
+    //  console.log("this is newData",newData)
+    //   console.log("this is storedata",storeData)
+  }
+  function saveEditItem(index){
+    const selectedItemforEdit = storeData.filter(
+      (item) => storeData.indexOf(item) === index
+    );
+    const mapOverSelectedItem = selectedItemforEdit.map((item) => ({
+      ...item,
+      name:itemInfo.name,
+      description:itemInfo.description,
+      rating:itemInfo.rating,
+      price:itemInfo.price,
+      edit: "false",
+    }));
+    const newData = [...storeData];
+    newData.splice(index, 1, mapOverSelectedItem[0]);
+    console.log("clicked on save button");
+    dispatch(fetchData(newData));
+    dispatch(unsorted_data(newData))
+    setItemInfo({
+      name:"",
+    description:"",
+    rating:"",
+    price:"",
+    image:"",
+    })
+  }
   useEffect(() => {
     function clearFilter() {
       (async function fetchDataFromAPI() {
@@ -95,9 +119,11 @@ const AllProducts = () => {
           `https://my-json-server.typicode.com/shubhamdhiman/ecommerce-dummyData/products`
         );
         const json = await data.json();
-        dispatch(fetchData(json));
-        dispatch(unsorted_data(json));
+        const editableData = json.map((item) => ({ ...item, edit: "false" }));
+        dispatch(fetchData(editableData));
+        dispatch(unsorted_data(editableData));
         setLoading(false);
+        console.log(editableData);
       })();
     }
     if (storeData.length === 0) {
@@ -138,7 +164,7 @@ const AllProducts = () => {
             </div>
             <div className="allProductsRight">
               <div className="allProductsContent">
-                {!edit ? (
+                {isTrue !== item.edit ? (
                   <p className="allProductsHeading">{item.name}</p>
                 ) : (
                   <input
@@ -147,10 +173,12 @@ const AllProducts = () => {
                     // }}
                     className="inputHeading"
                     type="text"
-                    value={item.name}
+                    onChange={(e)=>{setItemInfo({...itemInfo,name:e.target.value})}}
+                    value={itemInfo.name}
+
                   />
                 )}
-                {!edit ? (
+                {isTrue !== item.edit ? (
                   <p className="allProductsDesc">{item.description}</p>
                 ) : (
                   <textarea
@@ -159,35 +187,16 @@ const AllProducts = () => {
                     // }}
                     cols={100}
                     className="inputDesc"
-                    value={item.description}
+                    onChange={(e)=>{setItemInfo({...itemInfo,description:e.target.value})}}
+                    value={itemInfo.description}
                   ></textarea>
                 )}
               </div>
               <div className="itemPriceRatingDeleteBtn">
                 <div className="itemRating">
                   Rating:&nbsp;
-                  {!edit ? (
+                  {isTrue !== item.edit ? (
                     <div>
-                      {/* {ratingRender(item.rating)} */}
-                      {/* {console.log(arr)} */}
-                      {/* {console.log("array1 is ", arr1)}
-                      {console.log("array2 is ", arr2)}
-                      {arr1.map((item, index) => {
-                        return <i
-                          key={index}
-                          className="fa-solid fa-star fa-lg"
-                          style={{ color: "#00ffef" }}
-                        ></i>
-})}
-                      {arr2.map((item, index)=>{
-                        return <i key={index}
-                        className="fa-regular fa-star fa-lg"
-                        style={{ color: "#00ffef" }}
-                        ></i>
-                      })} 
-                      {(arr1 = [])}
-                      {(arr2 = [])} */}
-
                       <i
                         className="fa-solid fa-star fa-lg"
                         style={{ color: "#00ffef" }}
@@ -212,14 +221,15 @@ const AllProducts = () => {
                   ) : (
                     <input
                       type="number"
-                      value={item.rating}
+                      onChange={(e)=>{setItemInfo({...itemInfo,rating:e.target.value})}}
+                      value={itemInfo.rating}
                       className="inputRating"
                     />
                   )}
                 </div>
                 <div className="itemPrice">
                   Price:{" "}
-                  {!edit ? (
+                  {isTrue !== item.edit ? (
                     <strong>{item.price}</strong>
                   ) : (
                     <input
@@ -228,12 +238,13 @@ const AllProducts = () => {
                       // onChange={(e) => {
                       //   setPrice(e.target.value);
                       // }}
-                      value={item.price}
+                      onChange={(e)=>{setItemInfo({...itemInfo,price:e.target.value})}}
+                      value={itemInfo.price}
                     />
                   )}
                 </div>
 
-                {!edit ? (
+                {isTrue !== item.edit ? (
                   <div>
                     <button
                       className="allProductsDeleteBtn"
@@ -250,7 +261,10 @@ const AllProducts = () => {
                     <button
                       className="allProductsEditBtn"
                       onClick={() => {
-                        setEdit(true);
+                        // setEdit(true);
+                        const boolval = true;
+                        setItemInfo({name:item.name,description:item.description,rating:item.rating,price:item.price,image:item.image})
+                        editItem(index, boolval);
                       }}
                     >
                       <i
@@ -292,11 +306,18 @@ const AllProducts = () => {
                   </div>
                 ) : (
                   <div>
-                    <button className="cancelBtn">Cancel</button>
+                    <button
+                      className="cancelBtn"
+                      onClick={() =>{
+                        const boolval = false; 
+                        editItem(index, boolval)}}
+                    >
+                      Cancel
+                    </button>
                     <button
                       className="saveBtn"
                       onClick={() => {
-                        setEdit(false);
+                        saveEditItem(index)
                       }}
                     >
                       Save

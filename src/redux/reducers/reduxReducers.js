@@ -2,10 +2,12 @@ import {
   ADD_PRODUCT_PAGE,
   ADD_TO_CART,
   ADD_TO_DATABASE,
+  ADD_TO_UNSORTED_DATA,
   ALL_PRODUCTS_PAGE,
   CART_PAGE,
   DELETE_FROM_CART,
   DELETE_FROM_DATABASE,
+  EDITABLE,
   FETCHED_DATA,
   ITEM_DETAILS_DATA,
   ITEM_DETAILS_PAGE,
@@ -46,16 +48,26 @@ export function dataReducer(state = initialState, action) {
         ...state,
         data: [...state.data, action.newData],
       };
+    case ADD_TO_UNSORTED_DATA:
+      return {
+        ...state,
+        unsorted_data: [...state.unsorted_data, action.newData],
+      };
     case DELETE_FROM_DATABASE:
       return {
         ...state,
         data: action.newData,
       };
     case ITEM_DETAILS_DATA:
-        return{
-            ...state,
-            item_detail:action.newData
-        }
+      return {
+        ...state,
+        item_detail: action.newData,
+      };
+    case EDITABLE:
+      return{
+        ...state,
+        data:action.newData
+      }
     default:
       return state;
   }
@@ -86,3 +98,23 @@ export function pageReducer(state = initialPage, action) {
       return state;
   }
 }
+
+// const initialEditItemState = {
+//   editable: [{ edit: "true" }],
+// };
+// export function editItemReducer(state = initialEditItemState, action) {
+//   switch (action.type) {
+//     case EDITABLE:
+//       return {
+//         ...state,
+//         editable: [
+//           ...state.editable,
+//           { 
+//             edit: action.boolVal 
+//           }
+//         ],
+//       };
+//     default:
+//       return state;
+//   }
+// }
