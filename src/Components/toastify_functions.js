@@ -21,3 +21,11 @@ export function unsorted_toastify() {
   const notify = () => toast("Unsorted Successfully");
   notify();
 }
+export function edit_cancel_toastify() {
+  const notify = () => toast("Editing Canceled Successfully");
+  notify();
+}
+export function edit_done_toastify() {
+  const notify = () => toast("Editing Done Successfully");
+  notify();
+}

@@ -16,6 +16,8 @@ import {
   add_item_toastify,
   data_sorted_toastify,
   delete_item_toastify,
+  edit_cancel_toastify,
+  edit_done_toastify,
   unsorted_toastify,
 } from "./toastify_functions";
 import "../Assets/Css/AllProducts.css";
@@ -82,8 +84,11 @@ const AllProducts = () => {
     }));
     const newData = [...storeData];
     newData.splice(index, 1, mapOverSelectedItem[0]);
-    console.log("clicked");
+    // console.log("clicked");
     dispatch(fetchData(newData));
+    if(value == false){
+      edit_cancel_toastify()
+    }
     //  console.log("this is newData",newData)
     //   console.log("this is storedata",storeData)
   }
@@ -104,6 +109,7 @@ const AllProducts = () => {
     console.log("clicked on save button");
     dispatch(fetchData(newData));
     dispatch(unsorted_data(newData))
+    edit_done_toastify()
     setItemInfo({
       name:"",
     description:"",
@@ -197,7 +203,8 @@ const AllProducts = () => {
                   Rating:&nbsp;
                   {isTrue !== item.edit ? (
                     <div>
-                      <i
+                      {item.rating}/5
+                      {/* <i
                         className="fa-solid fa-star fa-lg"
                         style={{ color: "#00ffef" }}
                       ></i>
@@ -216,7 +223,7 @@ const AllProducts = () => {
                       <i
                         className="fa-regular fa-star fa-lg"
                         style={{ color: "#00ffee" }}
-                      ></i>
+                      ></i> */}
                     </div>
                   ) : (
                     <input
