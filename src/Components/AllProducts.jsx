@@ -4,7 +4,6 @@ import {
   ITEM_DETAILS_PAGE,
   add_to_cart,
   delete_from_database,
-  editable,
   fetchData,
   item_details_data,
   item_details_page,
@@ -13,6 +12,7 @@ import {
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {
+  addRightRating,
   add_item_toastify,
   data_sorted_toastify,
   delete_item_toastify,
@@ -21,6 +21,7 @@ import {
   unsorted_toastify,
 } from "./toastify_functions";
 import "../Assets/Css/AllProducts.css";
+import { callRating } from "./ratingfunc";
 
 const AllProducts = () => {
   const dispatch = useDispatch();
@@ -41,7 +42,6 @@ const AllProducts = () => {
   }
 
   function delete_item_from_database(index) {
-    // console.log(index);
     const filteredData = storeData.filter(
       (item) => storeData.indexOf(item) !== index
     );
@@ -84,15 +84,16 @@ const AllProducts = () => {
     }));
     const newData = [...storeData];
     newData.splice(index, 1, mapOverSelectedItem[0]);
-    // console.log("clicked");
     dispatch(fetchData(newData));
-    if(value == false){
+    if(value === false){
       edit_cancel_toastify()
     }
-    //  console.log("this is newData",newData)
-    //   console.log("this is storedata",storeData)
   }
   function saveEditItem(index){
+    if(itemInfo.rating > 5 || itemInfo.rating<0){
+      addRightRating()
+      return;
+    }
     const selectedItemforEdit = storeData.filter(
       (item) => storeData.indexOf(item) === index
     );
@@ -106,7 +107,6 @@ const AllProducts = () => {
     }));
     const newData = [...storeData];
     newData.splice(index, 1, mapOverSelectedItem[0]);
-    console.log("clicked on save button");
     dispatch(fetchData(newData));
     dispatch(unsorted_data(newData))
     edit_done_toastify()
@@ -118,6 +118,21 @@ const AllProducts = () => {
     image:"",
     })
   }
+  // function callRating(value){
+  //   if(value===0 || value<0){
+      
+  //     return <i
+  //    className="fa-solid fa-star fa-lg"
+  //    style={{ color: "#00ffef" }}
+  //  ></i>
+  //   }else{
+  //     return <i
+  //     className="fa-regular fa-star fa-lg"
+  //     style={{ color: "#00ffef" }}
+  //   ></i>
+  //   }
+    
+  // }
   useEffect(() => {
     function clearFilter() {
       (async function fetchDataFromAPI() {
@@ -129,7 +144,6 @@ const AllProducts = () => {
         dispatch(fetchData(editableData));
         dispatch(unsorted_data(editableData));
         setLoading(false);
-        console.log(editableData);
       })();
     }
     if (storeData.length === 0) {
@@ -203,7 +217,12 @@ const AllProducts = () => {
                   Rating:&nbsp;
                   {isTrue !== item.edit ? (
                     <div>
-                      {item.rating}/5
+                      {/* {item.rating}/5 */}
+                      {callRating(1-item.rating)}
+                      {callRating(2-item.rating)}
+                      {callRating(3-item.rating)}
+                      {callRating(4-item.rating)}
+                      {callRating(5-item.rating)}
                       {/* <i
                         className="fa-solid fa-star fa-lg"
                         style={{ color: "#00ffef" }}

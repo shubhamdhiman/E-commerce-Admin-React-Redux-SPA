@@ -5,6 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "../Assets/Css/Cart.css";
 import { delete_from_cart } from "../redux/actions/reduxActions";
 import { delete_item_toastify } from "./toastify_functions";
+import { callRating } from "./ratingfunc";
 function Cart() {
   const cart_data = useSelector((state) => state.dataR.cart);
   const dispatch = useDispatch();
@@ -16,7 +17,7 @@ function Cart() {
       (item) => cart_data.indexOf(item) !== index
     );
     dispatch(delete_from_cart(filteredData));
-      delete_item_toastify()
+    delete_item_toastify();
     if (filteredData.length === 0) {
       setEmpty(true);
     }
@@ -48,26 +49,11 @@ function Cart() {
               <div className="itemPriceRatingDeleteBtn">
                 <div className="itemRating">
                   Rating:&nbsp;
-                  <i
-                    className="fa-solid fa-star fa-lg"
-                    style={{ color: "#00ffef" }}
-                  ></i>
-                  <i
-                    className="fa-solid fa-star fa-lg"
-                    style={{ color: "#00ffef" }}
-                  ></i>
-                  <i
-                    className="fa-solid fa-star fa-lg"
-                    style={{ color: "#00ffef" }}
-                  ></i>
-                  <i
-                    className="fa-regular fa-star fa-lg"
-                    style={{ color: "#00ffee" }}
-                  ></i>
-                  <i
-                    className="fa-regular fa-star fa-lg"
-                    style={{ color: "#00ffee" }}
-                  ></i>
+                  {callRating(1 - item.rating)}
+                  {callRating(2 - item.rating)}
+                  {callRating(3 - item.rating)}
+                  {callRating(4 - item.rating)}
+                  {callRating(5 - item.rating)}
                 </div>
                 <div className="itemPrice">
                   Price: <strong>{item.price}</strong>

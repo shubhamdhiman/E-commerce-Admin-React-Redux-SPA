@@ -5,15 +5,13 @@ import { add_to_cart } from "../redux/actions/reduxActions";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { add_item_toastify } from "./toastify_functions";
+import { callRating } from "./ratingfunc";
 function ItemDetails() {
   const itemData = useSelector((state)=>state.dataR.item_detail)
   const storeData = useSelector((state)=>state.dataR.data)
   const dispatch = useDispatch()
-  // console.log("itemData",itemData)
   function addToCartFromItem(value){
-    const newData = storeData.filter((item)=> item.name == value)
-    // console.log(newData)
-    // console.log(newData[0])
+    const newData = storeData.filter((item)=> item.name === value)
     dispatch(add_to_cart(newData[0]))
     add_item_toastify()
   }
@@ -29,26 +27,12 @@ function ItemDetails() {
             <div className="itemDetailsHeading">{item.name}</div>
           <div className="itemDetailsRating">
             Rating: &nbsp;
-            <i
-              className="fa-solid fa-star fa-xl"
-              style={{ color: "#00ffef" }}
-            ></i>
-            <i
-              className="fa-solid fa-star fa-xl"
-              style={{ color: "#00ffef" }}
-            ></i>
-            <i
-              className="fa-solid fa-star fa-xl"
-              style={{ color: "#00ffef" }}
-            ></i>
-            <i
-              className="fa-regular fa-star fa-xl"
-              style={{ color: "#00ffee" }}
-            ></i>
-            <i
-              className="fa-regular fa-star fa-xl"
-              style={{ color: "#00ffee" }}
-            ></i>
+            {callRating(1-item.rating)}
+            {callRating(2-item.rating)}
+            {callRating(3-item.rating)}
+            {callRating(4-item.rating)}
+            {callRating(5-item.rating)}
+            
           </div>
           <div className="itemDetailsPrice">Price: <strong>{item.price}</strong></div>
           </div>

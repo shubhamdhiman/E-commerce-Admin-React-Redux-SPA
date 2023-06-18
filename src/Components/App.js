@@ -10,8 +10,6 @@ import { useSelector } from "react-redux";
 
 function App() {
   const page = useSelector((state) => state.pageR.page);
-  // console.log(page[0]);
-  // console.log(page[0] === "all_products_page");
   return (
     <>
       <Navigation />

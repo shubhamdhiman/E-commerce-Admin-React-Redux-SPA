@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import '../Assets/Css/AddProduct.css'
 import { useDispatch } from 'react-redux';
-import { add_to_database, add_to_unsorted_data, unsorted_data } from '../redux/actions/reduxActions';
-import { ToastContainer, toast } from "react-toastify";
+import { add_to_database, add_to_unsorted_data } from '../redux/actions/reduxActions';
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { add_item_database_toastify } from './toastify_functions';
+import { addRightRating, add_item_database_toastify } from './toastify_functions';
 function AddProduct() {
   const dispatch = useDispatch()
   const [formData, setFormData] = useState({
@@ -16,7 +16,10 @@ function AddProduct() {
   });
   function addItemToDatabase(e){
     e.preventDefault()
-    console.log(formData)
+    if(formData.rating > 5 || formData.rating < 0){
+      addRightRating()
+      return;
+    }
     dispatch(add_to_database(formData))
     // dispatch(unsorted_data(formData))
     dispatch(add_to_unsorted_data(formData))

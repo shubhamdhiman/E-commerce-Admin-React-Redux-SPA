@@ -12,11 +12,9 @@ import {
 } from "../redux/actions/reduxActions";
 function Navigation() {
   const cartItems = useSelector((state) => state.dataR.cart);
-  const page = useSelector((state) => state.pageR.page);
+  // const page = useSelector((state) => state.pageR.page);
   const shufflePage = useDispatch();
-  console.log(page[0]);
 
-  // console.log(typeof(page[0]))
   function changingPage(pageName) {
     if (pageName === "add_product_page") {
       shufflePage(add_product_page(pageName));
