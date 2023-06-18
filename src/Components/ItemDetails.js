@@ -1,15 +1,30 @@
-import React from "react";
+// Importing css
 import "../Assets/Css/ItemDetails.css";
+
+// Importing react and hooks to get and send data to store
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+
+// Importing action creator
 import { add_to_cart } from "../redux/actions/reduxActions";
+
+// Imorting react-toastify
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
+// Imoprtin toastify function
 import { add_item_toastify } from "./toastify_functions";
+
+// Importing rating function
 import { callRating } from "./ratingfunc";
+
+
 function ItemDetails() {
   const itemData = useSelector((state)=>state.dataR.item_detail)
   const storeData = useSelector((state)=>state.dataR.data)
   const dispatch = useDispatch()
+
+  // Function to add item to cart
   function addToCartFromItem(value){
     const newData = storeData.filter((item)=> item.name === value)
     dispatch(add_to_cart(newData[0]))
@@ -40,13 +55,15 @@ function ItemDetails() {
         <div className="itemDetailsDesc">
             <strong>Item Description: </strong>{item.description}
         </div>
+        {/* Add to cart Button */}
         <button className="itemDetailsAddBtn" onClick={()=>addToCartFromItem(item.name)}>Add to Cart</button>
       </div>
         ))
       }
+      {/* React Toastify Component */}
       <ToastContainer />
     </div>
   );
 }
-
+// Exporting ItemDetails Component
 export default ItemDetails;

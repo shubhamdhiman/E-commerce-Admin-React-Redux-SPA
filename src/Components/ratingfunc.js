@@ -1,3 +1,4 @@
+// Created a function to show rating of the item and return the icon accordingly
 export function callRating(value){
     if(value===0 || value<0){
       

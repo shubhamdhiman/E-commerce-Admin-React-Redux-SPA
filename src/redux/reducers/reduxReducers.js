@@ -1,3 +1,4 @@
+// Importing the actions
 import {
   ADD_PRODUCT_PAGE,
   ADD_TO_CART,
@@ -14,6 +15,7 @@ import {
   UNSORTED_DATA,
 } from "../actions/reduxActions";
 
+// Creating initial state for dataReducer
 const initialState = {
   data: [],
   cart: [],
@@ -21,6 +23,7 @@ const initialState = {
   item_detail: [],
 };
 
+// Creating reducer for data
 export function dataReducer(state = initialState, action) {
   switch (action.type) {
     case FETCHED_DATA:
@@ -73,9 +76,12 @@ export function dataReducer(state = initialState, action) {
   }
 }
 
+// Creating initial state for pageReducer
 const initialPage = {
   page: ["all_products_page"],
 };
+
+// Creating reducer for pages
 export function pageReducer(state = initialPage, action) {
   switch (action.type) {
     case ALL_PRODUCTS_PAGE:
@@ -99,22 +105,4 @@ export function pageReducer(state = initialPage, action) {
   }
 }
 
-// const initialEditItemState = {
-//   editable: [{ edit: "true" }],
-// };
-// export function editItemReducer(state = initialEditItemState, action) {
-//   switch (action.type) {
-//     case EDITABLE:
-//       return {
-//         ...state,
-//         editable: [
-//           ...state.editable,
-//           { 
-//             edit: action.boolVal 
-//           }
-//         ],
-//       };
-//     default:
-//       return state;
-//   }
-// }
+

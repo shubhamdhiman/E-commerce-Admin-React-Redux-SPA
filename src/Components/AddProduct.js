@@ -1,12 +1,25 @@
-import React, { useState } from 'react'
+// Importing css
 import '../Assets/Css/AddProduct.css'
+
+// Importing React
+import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
+
+// importing redux action creators
 import { add_to_database, add_to_unsorted_data } from '../redux/actions/reduxActions';
+
+// importing toastify
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
+// importing toastify functions
 import { addRightRating, add_item_database_toastify } from './toastify_functions';
+
+
 function AddProduct() {
   const dispatch = useDispatch()
+
+  // Storing form data localy in state which will later be updated in store
   const [formData, setFormData] = useState({
     name:"",
     description:"",
@@ -14,14 +27,17 @@ function AddProduct() {
     rating:"",
     image:"",
   });
+
+  // Function to add item to database 
   function addItemToDatabase(e){
     e.preventDefault()
+    // Adding condition to take right value for rating as input
     if(formData.rating > 5 || formData.rating < 0){
       addRightRating()
       return;
     }
+    // Dispatching data to database
     dispatch(add_to_database(formData))
-    // dispatch(unsorted_data(formData))
     dispatch(add_to_unsorted_data(formData))
     setFormData({
       name:"",
@@ -33,6 +49,8 @@ function AddProduct() {
   }
   return (
     <div className='addProduct'>
+
+      {/* Using form to collect data from user */}
         <form>
         <div className='addContainer'>
         <p className='heading'>Add Product</p>
@@ -43,6 +61,7 @@ function AddProduct() {
         <button type='submit' className='addBtn' onClick={(e)=>{addItemToDatabase(e)}}>Add</button>
         </div>
         </form>
+        {/* Using toastify component for notification */}
         <ToastContainer />
     </div>
   )
