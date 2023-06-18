@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../Assets/Images/urban-kart-logo.png";
+import logo from "../Assets/Images/urban-kart-logo1.png";
 import "../Assets/Css/Navigation.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -27,9 +27,9 @@ function Navigation() {
   return (
     <div className="nav">
       <div className="left">
-        <img src={logo} alt="UrbanKart" />
+        <img className="logoImage" src={logo} style={{width:"80px",marginLeft:"3rem"}} alt="UrbanKart" />
         <button
-          className="navButton"
+          className="navButton" style={{marginLeft:"2rem"}}
           onClick={() => changingPage(ALL_PRODUCTS_PAGE)}
         >
           Products
