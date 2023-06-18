@@ -1,70 +1,75 @@
-# Getting Started with Create React App
+# E-commerce React Redux (SPA)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Created an E-commerce Single Page React Application using React and Redux.
 
-## Available Scripts
+Data is created first, on https://my-json-server.typicode.com/ and then fetched from the provided link.
 
-In the project directory, you can run:
+## On this E-commerce SPA, the user can do multiple actions...
 
-### `npm start`
+### Main Page
+* Delete Item.
+* Add item to Cart.
+* Edit the Item Inlined and Save it or cancel editing.
+* See item details, by clicking on the info icon, a new page can be seen with item details.
+* User can sort the items based on price by clicking on the sort button also unsort button is given.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Item Details
+* From the item details page, the user can add the item to the cart by clicking on the (Add to Cart) button.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Cart
+* User can delete the items from the cart.
+* To see cart items, the user will have to click on the (Cart Items) button.
+* User can see the total number of cart items in the (Cart Items) button placed in the navigation bar.
 
-### `npm test`
+### Add Product
+* User can add a new item, for that user will have to click on the link (Add Product).
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## Tools Used
+<img align="left" src="https://user-images.githubusercontent.com/18380165/224329335-3cdf989b-bdce-41e6-82dc-7d4c50d5f283.png" width="100" height="100">
+<img align="left" src="https://user-images.githubusercontent.com/18380165/224329345-7363d693-4f27-4a58-8c9e-086d8a3fa420.png" width="100" height="100">
+<img align="left" src="https://user-images.githubusercontent.com/18380165/224332427-426a3fbb-e25d-4deb-a832-666ae2e2e418.png" width="100" height="100">
+<img align="left" src="https://cdn.freebiesupply.com/logos/large/2x/react-1-logo-png-transparent.png" width="100" height="100">
+<img align="left" src="https://cdn.worldvectorlogo.com/logos/redux.svg" width="100" height="100">
+<img  src="https://user-images.githubusercontent.com/18380165/224329339-a5174b23-1a5c-4ae4-95c8-ead20a29d77e.png" width="100" height="100">
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Website 
+### To see the project: https://urban-kart.netlify.app/
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## Previews
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Main Page...
+![Landing Page](https://github.com/shubhamdhiman/Ecommerce-React-App/assets/18380165/6230d7c9-abe7-46f3-a97b-4a68b43d9583)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Edit Item...
+![Edit Item](https://github.com/shubhamdhiman/Ecommerce-React-App/assets/18380165/e23fdd09-be2a-48fd-9ce9-3322bc87bc40)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Items Sorted...
+![Sorted](https://github.com/shubhamdhiman/Ecommerce-React-App/assets/18380165/0563b3a2-8872-422d-93f5-ec104c328a50)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Cart Count...
+![cart count](https://github.com/shubhamdhiman/Ecommerce-React-App/assets/18380165/047a35bb-e34e-46cc-bf47-7f497ec40fd9)
 
-## Learn More
+Cart Page...
+![cart page](https://github.com/shubhamdhiman/Ecommerce-React-App/assets/18380165/5ceaeb44-f23c-4856-8048-ccbd944676c8)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Add Product...
+![add Product](https://github.com/shubhamdhiman/Ecommerce-React-App/assets/18380165/db15084f-2701-4833-94e0-a4cc547c425a)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Item Info...
+![item info](https://github.com/shubhamdhiman/Ecommerce-React-App/assets/18380165/1b94581e-5d7d-44a6-a029-968b4712ebcb)
 
-### Code Splitting
+## To run the project
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
+  npm install<br>
+  npm start
+ 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Contact Me
+* Email: shubhamdhiman00.sd@gmail.com
+* Instagram: @shubham_dhiman3.089
+* Twitter: https://twitter.com/shubhamdhiman78
+* Youtube: https://www.youtube.com/channel/UCiB-unVOfV1dcHWyvhesI4w
