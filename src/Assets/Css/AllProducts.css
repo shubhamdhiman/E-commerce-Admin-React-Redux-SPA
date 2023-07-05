@@ -251,3 +251,36 @@
     border-radius: .2rem;
     margin: 0;
 }
+
+@media screen and (max-width:1560px) {
+    .product {
+        width: 80%;
+        margin-top: 5rem;
+    }
+    .sortDiv {
+        padding: .5rem 1rem;
+        border-radius: .3rem;
+        display: flex;
+        align-items: center;
+        margin-top: 0rem;
+        position: fixed;
+        right: 3rem;
+    }
+}
+
+@media screen and (max-width:1200px) {
+    .product {
+        width: 95%;
+    }
+}
+@media screen and (max-width:1000px) {
+    .allProductsHeading {
+        font-size: 1.5rem;
+    }
+    
+    .allProductsDesc {
+        font-size: 1.05rem;
+        margin:0;
+    
+    }
+}
